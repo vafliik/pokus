@@ -1,39 +1,58 @@
 /* app css stylesheet */
 
-ul {
-    list-style: none;
+.container {
+    width: 95%;
 }
 
-li {
-    float: left;
-    margin-right: 10px;
+.rada {
+    width:95.536585%; display: flex;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-left: 20px solid red;
 }
 
-.menu {
-    list-style: none;
-    border-bottom: 0.1em solid black;
-    margin-bottom: 2em;
-    padding: 0 0 0.5em;
+.kulicka-wrapper{
+    flex: 1;
 }
 
-.menu:before {
-    content: "[";
+img.kulicka {
+    height: auto;
+    width: 95%;
 }
 
-.menu:after {
-    content: "]";
+button {
+    position: relative;
+    padding: 10px 40px;
+    margin: 10px auto;
+    border-radius: 10px;
+    font-size: 25px;
+    color: #FFF;
+    text-decoration: none;
 }
 
-.menu > li {
-    display: inline;
+.blue
+{
+    background-color: #3498DB;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #2980B9;
 }
 
-.menu > li:before {
-    content: "|";
-    padding-right: 0.3em;
+.casovac {
+    width:95.536585%; display: flex;
+
+}
+.casovac span {
+    /*color: #3498DB;*/
+    margin: 100px auto;
+    font-size: 25px;
 }
 
-.menu > li:nth-child(1):before {
-    content: "";
-    padding: 0;
+.cerveny
+{
+    color: #E74C3C;
+}
+
+.zeleny
+{
+    color: #82BF56;
 }

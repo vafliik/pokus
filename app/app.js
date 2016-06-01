@@ -21,7 +21,7 @@ angular.module('myApp', [])
     .controller('RandCtrl', function ($timeout, Data) {
         var socket = io();
 
-        this.time = 3;
+        this.time = 10;
 
         this.counter = this.time;
 
@@ -57,6 +57,9 @@ angular.module('myApp', [])
         this.ukazKulicky = function () {
 
             this.colors = this.randomColors;
+            console.log(new Date())
+            console.log(this.randomColors)
+
             socket.emit('kule', this.randomColors);
 
             this.showKulicky = true;

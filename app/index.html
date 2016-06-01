@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
+    <title>Kuličky Pětiboj 2016</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -35,21 +35,24 @@
 <![endif]-->
 
 <div class="container" ng-controller="RandCtrl as rcl">
-    <button ng-click="rcl.ukazKulicky()" ng-show="rcl.kulickyReady" show-focus="rcl.kulickyReady">click</button>
 
-    <br>
+    <div class="rada">
+        <button ng-click="rcl.ukazKulicky()" ng-show="rcl.kulickyReady" show-focus="rcl.kulickyReady" class="blue">
+            Jáchyme, hoď to do stroje
+        </button>
 
-    <ul ng-show="rcl.showKulicky">
-        {{rcl.counter}}
-        <li ng-repeat="col in rcl.colors track by $index">
-            <img ng-src="./img/{{col}}.png">
-        </li>
-    </ul>
+        <div ng-show="rcl.showKulicky" ng-repeat="col in rcl.colors track by $index" class="kulicka-wrapper">
+            <img ng-src="./img/{{col}}.png" class="kulicka">
+        </div>
 
-    <br>
+
+    </div>
+
+    <div ng-show="rcl.showKulicky" class="casovac">
+        <span ng-class="{zeleny: rcl.counter >= 4, cerveny: rcl.counter < 4 }">{{rcl.counter}}</span>
+    </div>
 
 </div>
-
 
 
 </body>
