@@ -33,13 +33,29 @@
 
 
 </div>
-<ol id="messages"></ol>
+<h3>Poslední</h3>
+
+<div class="rada">
+
+</div>
+
+<h3>Historie</h3>
+<ul id="kulicky"></ul>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     var socket = io();
-    socket.on('kule', function(msg){
-        $('#messages').append($('<li>').text(msg));
+    socket.on('kule', function (msg) {
+
+        var arrayLength = msg.length;
+
+        $('.rada').html('')
+
+        for (var i = 0; i < arrayLength; i++) {
+            $('.rada').append('<div class="kulicka-wrapper"><img src="./img/' + msg[i] + '.png" /></div>')
+        }
+
+        $('#kulicky').prepend($('<li>').text(msg + " (" + new Date() + ")"));
     });
 </script>
 
