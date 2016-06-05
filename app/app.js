@@ -35,32 +35,45 @@ angular.module('myApp', [])
         this.showKulicky = true;
 
         this.generateKulicky = function () {
-            this.randomColors = [];
+            var obsahujeVsechny = false
+            do {
 
-            for (var i = 0; i < 10; i++) {
-                var pridana = false;
+                this.nahodneBarvy = [];
 
-                while (!pridana) {
-                    var nahodnaBarva = colors[Math.floor(Math.random() * colors.length)];
-                    if (i == 0 || nahodnaBarva != this.randomColors[i - 1]) {
-                        this.randomColors.push(nahodnaBarva);
-                        pridana = true;
+                for (var i = 0; i < 10; i++) {
+                    var pridana = false;
+
+                    while (!pridana) {
+                        var nahodnaBarva = colors[Math.floor(Math.random() * colors.length)];
+
+                        //pokud byla vylosovana stejna barva jako v minulem "tahu", tak ji neprida
+                        if (i == 0 || nahodnaBarva != this.nahodneBarvy[i - 1]) {
+                            this.nahodneBarvy.push(nahodnaBarva);
+                            pridana = true;
+                        }
                     }
                 }
+
+                var _this = this;
+                //Kontroluje, ze vsechny barvy jsou zastoupeny
+                obsahujeVsechny = colors.every(function (barva) { return _this.nahodneBarvy.indexOf(barva) >= 0; });
+
             }
+            //generuje, dokud nejsou vsechny barvy zastoupeny
+            while (obsahujeVsechny==false);
 
             this.kulickyReady = true;
-        }
+        };
 
         this.generateKulicky();
 
         this.ukazKulicky = function () {
 
-            this.colors = this.randomColors;
+            this.colors = this.nahodneBarvy;
             console.log(new Date())
-            console.log(this.randomColors)
+            console.log(this.nahodneBarvy)
 
-            socket.emit('kule', this.randomColors);
+            socket.emit('kule', this.nahodneBarvy);
 
             this.showKulicky = true;
             this.kulickyReady = false;
@@ -75,7 +88,7 @@ angular.module('myApp', [])
                 }
                 else {
                     _this.showKulicky = false;
-                    _this.historie.push(_this.randomColors)
+                    _this.historie.push(_this.nahodneBarvy)
 
                     _this.generateKulicky();
                     _this.counter = _this.time;
@@ -87,5 +100,7 @@ angular.module('myApp', [])
             $timeout(this.onTimeout, 1000);
 
         };
+
+
     });
 
