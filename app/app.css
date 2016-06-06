@@ -4,10 +4,13 @@
     width: 95%;
 }
 
+.main { margin-top: 20%;
+}
+
 .rada {
     width:95.536585%; display: flex;
     margin: 10px auto;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     border-left: 20px solid red;
 }
 

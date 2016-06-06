@@ -35,7 +35,10 @@
 </div>
 <h3>Poslední</h3>
 
-<div class="rada">
+<div class="container">
+
+    <div class="rada">
+    </div>
 
 </div>
 
@@ -52,7 +55,7 @@
         $('.rada').html('')
 
         for (var i = 0; i < arrayLength; i++) {
-            $('.rada').append('<div class="kulicka-wrapper"><img src="./img/' + msg[i] + '.png" /></div>')
+            $('.rada').append('<div class="kulicka-wrapper"><img src="./img/' + msg[i] + '.png" class="kulicka"/></div>')
         }
 
         $('#kulicky').prepend($('<li>').text(msg + " (" + new Date() + ")"));

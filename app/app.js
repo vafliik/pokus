@@ -14,18 +14,12 @@ angular.module('myApp', [])
         };
     })
 
-    .factory('Data', function(){
-        return { historie: [] };
-    })
-
-    .controller('RandCtrl', function ($timeout, Data) {
+    .controller('RandCtrl', function ($timeout) {
         var socket = io();
 
         this.time = 10;
 
         this.counter = this.time;
-
-        this.historie = Data.historie
 
         var colors = ['cervena', 'zelena', 'modra', 'oranzova', 'zluta'];
 
@@ -88,7 +82,6 @@ angular.module('myApp', [])
                 }
                 else {
                     _this.showKulicky = false;
-                    _this.historie.push(_this.nahodneBarvy)
 
                     _this.generateKulicky();
                     _this.counter = _this.time;
