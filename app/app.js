@@ -50,11 +50,13 @@ angular.module('myApp', [])
 
                 var _this = this;
                 //Kontroluje, ze vsechny barvy jsou zastoupeny
-                obsahujeVsechny = colors.every(function (barva) { return _this.nahodneBarvy.indexOf(barva) >= 0; });
+                obsahujeVsechny = colors.every(function (barva) {
+                    return _this.nahodneBarvy.indexOf(barva) >= 0;
+                });
 
             }
-            //generuje, dokud nejsou vsechny barvy zastoupeny
-            while (obsahujeVsechny==false);
+                //generuje, dokud nejsou vsechny barvy zastoupeny
+            while (obsahujeVsechny == false);
 
             this.kulickyReady = true;
         };

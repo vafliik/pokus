@@ -3,11 +3,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.use("/app", express.static('app'));
+app.use("/kulicky", express.static('app'));
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + '/app');
-});
 
 io.on('connection', function(socket){
     socket.on('kule', function(msg){

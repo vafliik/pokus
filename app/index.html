@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kuličky Pětiboj 2016</title>
+    <title>Kuličky pro diváky</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -22,10 +22,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="app.js"></script>
-
 </head>
 <body ng-cloak>
 
@@ -34,25 +31,36 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="container main" ng-controller="RandCtrl as rcl">
+
+</div>
+<h3>Poslední</h3>
+
+<div class="container">
 
     <div class="rada">
-        <button ng-click="rcl.ukazKulicky()" ng-show="rcl.kulickyReady" show-focus="rcl.kulickyReady" class="blue">
-            Jáchyme, hoď to do stroje
-        </button>
-
-        <div ng-show="rcl.showKulicky" ng-repeat="col in rcl.colors track by $index" class="kulicka-wrapper">
-            <img ng-src="./img/{{col}}.png" class="kulicka">
-        </div>
-
-
-    </div>
-
-    <div ng-show="rcl.showKulicky" class="casovac">
-        <span ng-class="{zeleny: rcl.counter >= 4, cerveny: rcl.counter < 4 }">{{rcl.counter}}</span>
     </div>
 
 </div>
+
+<h3>Historie</h3>
+<ul id="kulicky"></ul>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    var socket = io();
+    socket.on('kule', function (msg) {
+
+        var arrayLength = msg.length;
+
+        $('.rada').html('')
+
+        for (var i = 0; i < arrayLength; i++) {
+            $('.rada').append('<div class="kulicka-wrapper"><img src="./img/' + msg[i] + '.png" class="kulicka"/></div>')
+        }
+
+        $('#kulicky').prepend($('<li>').text(msg + " (" + new Date() + ")"));
+    });
+</script>
 
 
 </body>
